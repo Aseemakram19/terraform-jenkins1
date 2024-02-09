@@ -7,6 +7,11 @@
 # Ignore .terraform directory
 .terraform/
 
+# # Ignore key files
+*.pem
+
+.terraform.lock.hcl
+
 # Ignore any .tfvars files that are intended to be kept secret
 *.auto.tfvars
 *.auto.tfvars.json
