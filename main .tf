@@ -52,7 +52,7 @@ resource "aws_security_group" "ec2_security_group" {
 resource "aws_instance" "Jenkins_server" {
 ami = "ami-03f4878755434977f"  
 instance_type = "t2.micro"
-security_groups = [ "jenkins server security group" ]
+security_groups = [aws_security_group.ec2_security_group.name]
 key_name = var.key_name
 tags = {
   Name: var.instance_name
@@ -60,7 +60,7 @@ tags = {
  connection {
     type     = "ssh"
     user     = "ubuntu"
-    private_key = file(var.private_key)
+    private_key = file("${path.module}/${var.private_key}")
     host     = self.public_ip
   }
 

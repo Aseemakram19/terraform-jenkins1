@@ -6,7 +6,7 @@ variable "key_name" {
   default = "terra"                  # Names of key in aws
 }
 variable "private_key" {
-  default = "."      # file path of private pem key
+  default = "terra.pem"      # file path of private pem key
 }
 
 variable "access_key" {

@@ -3,7 +3,7 @@
 # Ignore Terraform state files
 *.tfstate
 *.tfstate.*
-
+*.hcl
 # Ignore .terraform directory
 .terraform/
 
