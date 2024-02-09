@@ -53,7 +53,7 @@ This Terraform configuration automates the setup of a Jenkins server on an AWS E
 
 2. Navigate to the project directory:
    ```bash
-   cd terraform-jenkins
+   cd terraform-jenkins1
 
 3. Fill in the required information in variables.tf:
    ```bash
