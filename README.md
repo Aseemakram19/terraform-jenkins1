@@ -1,5 +1,10 @@
 # How to setup Jenkins using Terraform 🚀
 
+# Prerequeion : 1. Terraform Installed on your local 
+                2. Git installed on your local 
+                3. AWS account exists
+                4. AWS IAM USER with ACCESS KEY, SECRET ACCESS KEY , ZONE
+
 ## Overview
 
 This Terraform configuration automates the setup of a Jenkins server on an AWS EC2 instance. It provisions the necessary infrastructure and installs Jenkins along with its dependencies.

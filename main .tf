@@ -31,16 +31,17 @@ tags = {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo apt update -y",
-      "sleep 5",
+      "sudo apt update -y", #Updates the package list on the target machine.
+      "sleep 5", #Pauses execution for 5 seconds. This is often used to allow previous commands to complete before moving on to the next one.
       "sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key",
       "echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null",
-      "sudo apt-get update",
-      "sudo apt-get install fontconfig openjdk-17-jre -y",
-      "sleep 5",
-      "sudo apt-get install jenkins -y",
-      "sleep 5",
-      "sudo echo 'The initial admin password is: '; cat /var/lib/jenkins/secrets/initialAdminPassword"
+       #Downloads the Jenkins GPG key and saves it as a keyring file, Adds the Jenkins repository to the package manager's sources list.
+      "sudo apt-get update", #Updates the package list on the target machine.
+      "sudo apt-get install fontconfig openjdk-17-jre -y", #JAVA OPENJDK INSTALLATION
+      "sleep 5", #Pauses execution for 5 seconds. This is often used to allow previous commands to complete before moving on to the next one.
+      "sudo apt-get install jenkins -y", #INSTALL JENKINS
+      "sleep 5",#Pauses execution for 5 seconds. This is often used to allow previous commands to complete before moving on to the next one.
+      "sudo echo 'The initial admin password is: '; cat /var/lib/jenkins/secrets/initialAdminPassword" # Prints a message and then displays the content of the Jenkins initial admin password file.
     ]
   }
 }
