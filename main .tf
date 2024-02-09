@@ -9,15 +9,50 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region = "us-east-1"
+  region = "ap-south-1"
   access_key = var.access_key
   secret_key = var.secret_key
 }
 
+# create security group for the ec2 instance
+resource "aws_security_group" "ec2_security_group" {
+  name        = "ec2 security group"
+  description = "allow access on ports 8080 and 22"
+
+  # allow access on port 8080
+  ingress {
+    description = "http proxy access"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # allow access on port 22
+  ingress {
+    description = "ssh access"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = -1
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "jenkins server security group"
+  }
+}
+
 resource "aws_instance" "Jenkins_server" {
-ami = "ami-0c7217cdde317cfec"  
+ami = "ami-03f4878755434977f"  
 instance_type = "t2.micro"
-security_groups = [ "default" ]
+security_groups = [ "jenkins server security group" ]
 key_name = var.key_name
 tags = {
   Name: var.instance_name
@@ -40,7 +75,9 @@ tags = {
       "sudo apt-get install fontconfig openjdk-17-jre -y", #JAVA OPENJDK INSTALLATION
       "sleep 5", #Pauses execution for 5 seconds. This is often used to allow previous commands to complete before moving on to the next one.
       "sudo apt-get install jenkins -y", #INSTALL JENKINS
-      "sleep 5",#Pauses execution for 5 seconds. This is often used to allow previous commands to complete before moving on to the next one.
+      "sudo systemctl enable jenkins", #enable the Jenkins service to start at boot
+      "sudo systemctl start jenkins",   ###start the Jenkins service with the command 
+      "sleep 5", #Pauses execution for 5 seconds. This is often used to allow previous commands to complete before moving on to the next one.
       "sudo echo 'The initial admin password is: '; cat /var/lib/jenkins/secrets/initialAdminPassword" # Prints a message and then displays the content of the Jenkins initial admin password file.
     ]
   }
