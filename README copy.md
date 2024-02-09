@@ -49,7 +49,7 @@ This Terraform configuration automates the setup of a Jenkins server on an AWS E
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Aseemakram19/terraform-jenkins.git
+   git clone https://github.com/Aseemakram19/terraform-jenkins1.git
 
 2. Navigate to the project directory:
    ```bash
