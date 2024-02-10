@@ -10,10 +10,10 @@ variable "private_key" {
 }
 
 variable "access_key" {
-  default = "AKIASOGXGXHRIBCUOK77"                # aws access key
+  default = "insert"                # aws access key
 }
 
 variable "secret_key" {
-  default = "8lP8eGjljVLCZ+DFEHMVXa7jX1LYLoHWU29y9J+Y"         # aws secret key
+  default = "insert"         # aws secret key
 }
 
